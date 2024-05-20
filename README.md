@@ -22,7 +22,7 @@ Team Mates:
 ***Questions:***
 
 1. What is the link of the fork Net&Sys Assignment in your repository. ***(1 mark)*** __https://github.com/ird1natris/NetSysProject__.
-2. How many files and folders are in this repository. ***(1 mark)*** __Fill answer here__.
+2. How many files and folders are in this repository. ***(1 mark)*** __2 files and 1 folder__.
 
 
 ## Exploring github codespaces
@@ -55,7 +55,7 @@ Team Mates:
 ***Questions:***
 
 1. What is default OS used to run the virtual environment for codespaces. ***(1 mark)*** __Ubuntu Linux__.
-2. What are the two options of RAM, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** __Fill answer here__.
+2. What are the two options of RAM, disk and vcpu configuration you can have in running codespaces . ***(1 mark)*** __2 cores, 8 GB RAM, and 32 GB storage, up to 32 cores, 64 GB RAM, and 128 GB storage__.
 3. Why must we commit and sync our current work on source control? ***(1 mark)*** __Committing and syncing work on source control ensures that all changes are saved and shared with team members, providing a backup, facilitating collaboration, and maintaining a history of changes for version control and auditing purposes__.
 
 ## Exploring the Terminal
