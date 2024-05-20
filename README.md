@@ -73,16 +73,16 @@ codespace
 
 Look at the TERMINAL tab. Run the following commands and provide the output here. 
 
-1. Run the command **pwd** . ***(1 mark)*** __Fill answer here__.
-2. Run the command **cat /etc/passwd** . ***(1 mark)*** __Fill answer here__.
-3. Run the command **df** . ***(1 mark)*** __Fill answer here__.
-4. Run the command **du** . ***(1 mark)*** __Fill answer here__.
-5. Run the command **ls** . ***(1 mark)*** __Fill answer here__.
-6. Run the command **ls -asl** . ***(1 mark)*** __Fill answer here__.
-7. Run the command **free -h** . ***(1 mark)*** __Fill answer here__.
-8. Run the command **cat /proc/cpuinfo** . ***(1 mark)*** __Fill answer here__.
-9. Run the command **top** and type **q** to quit. ***(1 mark)*** __Fill answer here__.
-10. Run the command **uname -a**. ***(1 mark)*** __Fill answer here__.
+1. Run the command **pwd** . ***(1 mark)***
+2. Run the command **cat /etc/passwd** . ***(1 mark)***
+3. Run the command **df** . ***(1 mark)***
+4. Run the command **du** . ***(1 mark)***
+5. Run the command **ls** . ***(1 mark)***
+6. Run the command **ls -asl** . ***(1 mark)***
+7. Run the command **free -h** . ***(1 mark)***
+8. Run the command **cat /proc/cpuinfo** . ***(1 mark)***
+9. Run the command **top** and type **q** to quit. ***(1 mark)***
+10. Run the command **uname -a**. ***(1 mark)***
 
 ```bash
 @joeynor ➜ /workspaces/OSProject (main) $ whoami 
