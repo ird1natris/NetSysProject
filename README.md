@@ -312,7 +312,7 @@ Linux codespaces-ea28d8 6.5.0-1019-azure #20~22.04.1-Ubuntu SMP Wed Apr  3 03:28
 
 13. Name the version and hardware architecture of the linux Virtual environment. ***(1 mark)*** __The version is 6.5.0-1019-azure and the hardware architecture is x86_64__.
 
-14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** __Fill answer here__.
+14. What is the difference between **ls** vs **ls -asl**. ***(1 mark)*** __ls command lists the names of files and directories in the current directory while ls -asl command lists files and directories with detailed information including file type and permissions, number of hard links, owner, group, size, last modification date and time with all entries including hidden files and size in blocks__.
 
 15. What is the TLB size of the Virtual CPU. ***(1 mark)*** __The TLB size of the Virtual CPU is 6.2 GiB__.
 
