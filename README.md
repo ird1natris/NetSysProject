@@ -3,8 +3,8 @@
 Group Name: __Dark Phoenix__ 
 
 Team Mates:
-1. __Irdina Batrisyia Binti Nor Azli__ __2117188__
-2. __Sayyidah Nafisah Binti Johari__ __2118242__
+1. __Irdina Batrisyia Binti Nor Azli__  __2117188__
+2. __Sayyidah Nafisah Binti Johari__  __2118242__
 
 ## Rules
 1. You are allowed to have **3 group** members.
