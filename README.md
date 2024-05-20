@@ -1,11 +1,10 @@
 # Net&Sys Assignment: Running Containers for Application Development
 
-Group Name: __Fill your team name__. 
+Group Name: __Dark Phoenix__ 
 
 Team Mates:
-1. __Fill name__ and __matric no__
-2. __Fill name__ and __matric no__
-3. __Fill name__ and __matric no__
+1. __Irdina Batrisyia Binti Nor Azli__ __2117188__
+2. __Sayyidah Nafisah Binti Johari__ __2118242__
 
 ## Rules
 1. You are allowed to have **3 group** members.
