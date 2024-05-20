@@ -293,13 +293,15 @@ top - 15:13:15 up 18 min,  0 users,  load average: 0.20, 0.35, 0.49
 Tasks:  17 total,   1 running,  16 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  4.1 us,  4.2 sy,  0.0 ni, 91.5 id,  0.2 wa,  0.0 hi,  0.0 si,  0.0 st
 MiB Mem :   7929.6 total,    186.3 free,   1485.3 used,   6258.0 buff/cache
-MiB Swap:      0.0 total,      0.0 free,      0.0 used.   6128.2 avail Mem 
-
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   6128.2 avail Mem
+ 
+@ird1natris ➜ /workspaces/NetSysProject (main) $ 
     PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                                 
    2382 codespa+  20   0   21.1g 340164  43776 S   1.3   4.2   0:21.34 node                                                                                    
    3212 codespa+  20   0  726652  61544  38656 S   1.0   0.8   0:01.15 node                                                                                    
    2186 codespa+  20   0  970152 109124  42240 S   0.7   1.3   0:05.03 node                                                                                    
-    776 root      20   0 1463360  86492  50304 S   0.3   1.1   0:00.17 dockerd                                                                                 
+    776 root      20   0 1463360  86492  50304 S   0.3   1.1   0:00.17 dockerd
+                                                                                 
 @ird1natris ➜ /workspaces/NetSysProject (main) $ uname -a
 Linux codespaces-ea28d8 6.5.0-1019-azure #20~22.04.1-Ubuntu SMP Wed Apr  3 03:28:18 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 ```
