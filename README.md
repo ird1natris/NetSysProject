@@ -538,6 +538,7 @@ Digest: sha256:43c7661a3243c04b0955c81ac994ea13a1d8a1e53c15023a7b3cd5e8bb25de3c
 Status: Downloaded newer image for httpd:latest
 281de1dfcefd07006d9e573153d71035ca5846bb726ac4d2c036fecd55e4d227
 ```
+Click [HERE](https://literate-journey-gvx6gjjq57q3p6-8080.app.github.dev/index.html) to see the website.
 4. If it works, codespace will trigger a port assignment and provide a URL for you to access your webpage like the one below.
 
  <img src="./images/websitelink.png" width="70%">
