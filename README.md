@@ -510,6 +510,11 @@ total 4
 
 1. Create a directory called webpage in your host machine
 2. Inside the directory, create a page index.html, with any content you would like
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ mkdir webpage
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ cd webpage
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ touch index.html
+```
 3. Then, run the apache webserver and mount the webpage directory to it. Hint:
 ```bash
 ## the -p 8080:80 flag points the host port 8080 to the container port 80
