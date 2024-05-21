@@ -335,6 +335,8 @@ c6cf28de8a06: Pull complete
 Digest: sha256:fac2c0fd33e88dfd3bc88a872cfb78dcb167e74af6162d31724df69e482f886c
 Status: Downloaded newer image for debian:latest
 docker.io/library/debian:latest
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker run --detach -it debian
+6bb5c8861821b37633bc24d2e34eb62ce863349b0960d6bbd8b58be58eefc5ab
 ```
 2. This will run the debian container. To check if the debian container is running, type
 ```bash
@@ -342,12 +344,20 @@ docker.io/library/debian:latest
 CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
 f65be1987f84   debian    "bash"    4 minutes ago   Up 4 minutes             romantic_jackson
 ```
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED              STATUS          PORTS     NAMES
+6bb5c8861821   debian    "bash"    About a minute ago   Up 58 seconds             intelligent_keller
+```
 
 3. Keep note of the name used by your container, this is usually given random names unless you specify your own name. Now run a bash command on the container. Make sure you use the name of your container instead of the one shown here. 
 ```bash
 docker exec -i -t romantic_jackson /bin/bash
 ```
-
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec -i -t intelligent_keller /bin/bash
+root@6bb5c8861821:/# 
+```
 4. Create a file on the container. First you must make sure you are in the bash command prompt of the container. The container is new, and does not have any software other than the debian OS. To create a new file, you will need an editor installed. In the bash shell of the container, run the package manager apt-get to install nano text editor. 
 
 ```bash
@@ -362,6 +372,19 @@ root@f65be1987f84:~# nano helloworld.txt
 
 5. Edit your helloworld.txt, create your messsage and save by typing ctrl-X. Once saved, explore using the container to see where the file is located. Then exit the shell, by typing **exit**.
 
+```bash
+root@6bb5c8861821:/# cd /root
+root@6bb5c8861821:~# nano helloworld.txt
+root@6bb5c8861821:~# ls
+helloworld.txt
+root@6bb5c8861821:~# cat helloworld.txt
+Hello world! this is helloworld.txt file for assignment 3 Network & System Administration ^.^
+root@6bb5c8861821:~# exit
+exit
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ 
+```
+
+
 6. Stop the container and run **docker ps -a**, and restart the container again. Is your file in the container still available?
 ```bash 
 @joeynor ➜ /workspaces/OSProject (main) $ docker stop romantic_jackson
@@ -372,7 +395,22 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 
 @joeynor ➜ /workspaces/OSProject (main) $ docker restart romantic_jackson
 ```
-
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker stop intelligent_keller
+intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS                        PORTS     NAMES
+6bb5c8861821   debian    "bash"    10 minutes ago   Exited (137) 16 seconds ago             intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker restart intelligent_keller
+intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS         PORTS     NAMES
+6bb5c8861821   debian    "bash"    11 minutes ago   Up 2 seconds             intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec -i -t intelligent_keller /bin/bash
+root@6bb5c8861821:/# cd /root
+root@6bb5c8861821:~# ls
+helloworld.txt
+```
 7. Stop the container and delete the container. What happened to your helloworld.txt?
 
 ```bash 
@@ -385,9 +423,20 @@ f65be1987f84   debian    "bash"    19 minutes ago   Exited (137) 18 seconds ago 
 @joeynor ➜ /workspaces/OSProject (main) $ docker rm romantic_jackson
 ```
 
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker stop intelligent_keller
+intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS                                PORTS     NAMES
+6bb5c8861821   debian    "bash"    15 minutes ago   Exited (137) Less than a second ago             intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker rm intelligent_keller
+intelligent_keller
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
 ***Questions:***
 
-1. Are files in the container persistent. Why not?. ***(1 mark)*** __Fill answer here__.
+1. Are files in the container persistent. Why not?. ***(1 mark)*** __n__.
 2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
 
 ## Running your own container with persistent storage
