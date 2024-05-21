@@ -464,7 +464,7 @@ e32ec602839531fe896d530763bca1c38137fc1710b38d7195e49e7f4101e34d
 
 ***Questions:***
 
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __To check the permission of the file, I used command ls -l as shown below. The result indicates that the files belong to user root and group root.__.
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __To check the permission of the file, I used command ls -l as shown below. The result indicates that the files belong to user root and group root. Based on the permission, owner, group and others can read and write but cannot execute the file.__.
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l -a
 total 12
@@ -522,10 +522,9 @@ total 4
 docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ -p 8080:80 httpd
 ```
 ```bash
-</html>@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ pwd
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ pwd
 /workspaces/NetSysProject/webpage
-@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ docker run --detach -v /workspaces/NetSysProject/webpage:/usr/local/apache2/htdocs/ -p 80
-80:80 httpd
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ docker run --detach -v /workspaces/NetSysProject/webpage:/usr/local/apache2/htdocs/ -p 8080:80 httpd
 Unable to find image 'httpd:latest' locally
 latest: Pulling from library/httpd
 09f376ebb190: Pull complete 
@@ -538,7 +537,7 @@ Digest: sha256:43c7661a3243c04b0955c81ac994ea13a1d8a1e53c15023a7b3cd5e8bb25de3c
 Status: Downloaded newer image for httpd:latest
 281de1dfcefd07006d9e573153d71035ca5846bb726ac4d2c036fecd55e4d227
 ```
-Click [HERE](https://literate-journey-gvx6gjjq57q3p6-8080.app.github.dev/index.html) to see the website.
+<img src="./webpage/ss_webpage.png" width="70%">
 
 
 4. If it works, codespace will trigger a port assignment and provide a URL for you to access your webpage like the one below.
@@ -554,9 +553,24 @@ Click [HERE](https://literate-journey-gvx6gjjq57q3p6-8080.app.github.dev/index.h
 
 ***Questions:***
 
-1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
-2. What port is the apache web server running. ***(1 mark)*** __port 8080__ 
-3. What port is open for http protocol on the host machine? ***(1 mark)***
+1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Based on the result in command below, owner, group and others can read and write all file but cannot execute them. The folder owned by user id 1000 and group id 1000 which belongs to codespace.__.
+2. What port is the apache web server running. ***(1 mark)*** __port 80__ 
+3. What port is open for http protocol on the host machine? ***(1 mark)*** __port 8080__
+
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ docker ps
+CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS         PORTS                                   NAMES
+989cec68f5af   httpd     "httpd-foreground"   5 minutes ago   Up 5 minutes   0.0.0.0:8080->80/tcp, :::8080->80/tcp   musing_yalow
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ docker exec -it 989cec68f5af ls -l /usr/local/apache2/htdocs
+total 5680
+-rw-rw-rw- 1 1000 1000 2756051 May 21 11:01 cimot.JPG
+-rw-rw-rw- 1 1000 1000     188 May 21 11:15 index.html
+-rw-rw-rw- 1 1000 1000 3054659 May 21 12:54 ss_webpage.png
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ awk -F':' '$3 == 1000 {print $1}' /etc/passwd
+codespace
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ awk -F':' '$3 == 1000 {print $1}' /etc/group
+codespace
+```
 
 ## Create SUB Networks
 
