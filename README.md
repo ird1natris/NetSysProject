@@ -436,8 +436,8 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ```
 ***Questions:***
 
-1. Are files in the container persistent. Why not?. ***(1 mark)*** __n__.
-2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __Fill answer here__.
+1. Are files in the container persistent. Why not?. ***(1 mark)*** __Files in the container is not persistent by default. This is because Codespace container can be stopped, restarted and recreated which will result in the loss of any changes made within the container.__.
+2. Can we run two, or three instances of debian linux? . ***(1 mark)*** __We cannot run multiple instances of debian linux__.
 
 ## Running your own container with persistent storage
 
