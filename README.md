@@ -464,7 +464,7 @@ e32ec602839531fe896d530763bca1c38137fc1710b38d7195e49e7f4101e34d
 
 ***Questions:***
 
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __The files in myroot can be read and write by all group. The user of the file is root.__.
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __To check the permission of the file, I used command ls -l as shown below. The result indicates that the files belong to user root and group root.__.
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l -a
 total 12
@@ -478,19 +478,20 @@ drwxrwxrwx+ 5 codespace root      4096 May 21 09:18 ..
 sudo chown -R codespace:codespace myroot
 
 ```
-*** __I can change the permission of the files to user codespace after using the command above. Commands below is the result before and after I use the command. I also have changed the permission of the files to user codespace.__.***
+*** __I have changed the permission of the files to user codespace after using the command above. Commands below is the result before and after I use the command. I also have changed the permission of the files to user codespace.__.***
 
 Before:
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l
 total 4
 -rw-rw-rw- 1 root root 67 May 21 09:21 helloworld.txt
-@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ chmod +x helloworld.txt
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ chmod u+x helloworld.txt
 chmod: changing permissions of 'helloworld.txt': Operation not permitted
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ 
 
 ```
 After:
+__As shown below, the permission for helloworld.txt has been changed to executable file for user codespace.
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ cd ..
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ sudo chown -R codespace:codespace myroot
@@ -498,10 +499,10 @@ After:
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l
 total 4
 -rw-rw-rw- 1 codespace codespace 67 May 21 09:21 helloworld.txt
-@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ chmod +x helloworld.txt
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ chmod u+x helloworld.txt
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l
 total 4
--rwxrwxrwx 1 codespace codespace 67 May 21 09:21 helloworld.txt
+-rwxrw-rw- 1 codespace codespace 67 May 21 09:21 helloworld.txt
 ```
 
 
