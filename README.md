@@ -327,6 +327,15 @@ Linux codespaces-ea28d8 6.5.0-1019-azure #20~22.04.1-Ubuntu SMP Wed Apr  3 03:28
 docker pull debian
 docker run --detach -it debian
 ```
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker pull debian
+Using default tag: latest
+latest: Pulling from library/debian
+c6cf28de8a06: Pull complete 
+Digest: sha256:fac2c0fd33e88dfd3bc88a872cfb78dcb167e74af6162d31724df69e482f886c
+Status: Downloaded newer image for debian:latest
+docker.io/library/debian:latest
+```
 2. This will run the debian container. To check if the debian container is running, type
 ```bash
 @joeynor ➜ /workspaces/OSProject (main) $ docker ps -a
