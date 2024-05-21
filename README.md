@@ -22,7 +22,7 @@ Team Mates:
 ***Questions:***
 
 1. What is the link of the fork Net&Sys Assignment in your repository. ***(1 mark)*** __https://github.com/ird1natris/NetSysProject__.
-2. How many files and folders are in this repository. ***(1 mark)*** __2 files and 1 folder__.
+2. How many files and folders are in this repository. ***(1 mark)*** __1 files and 3 folder__.
 
 
 ## Exploring github codespaces
@@ -618,9 +618,10 @@ a863edc11210   host      host      local
 ```
 3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __gateway for bluenet is ```172.18.0.1``` and gateway for rednet is ```172.19.0.1```__.
 4. What is the network address for the running container c1 and c2. 
-__Network address for container c1 is ```172.18.0.2``` and c2 is ```172.19.0.2```
+__Network address for container c1 is ```172.18.0.2``` and c2 is ```172.19.0.2```__
 
 __command for question 3 and 4:__
+
 __c1:__
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker inspect c1
