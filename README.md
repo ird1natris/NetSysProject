@@ -453,6 +453,14 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 
 @joeynor ➜ /workspaces/OSProject/myroot (main) $ docker run --detach -it -v /workspaces/OSProject/myroot:/root debian
 ```
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ mkdir myroot
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ cd myroot/
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ pwd
+/workspaces/NetSysProject/myroot
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ docker run --detach -it -v /workspaces/NetSysProject/myroot:/root debian
+18aaf79f8c2e938290ad86875da2b27cf4a0298e71bbff0ff8348ba5ebdd6394
+```
 
 ***Questions:***
 
