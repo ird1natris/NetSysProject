@@ -521,7 +521,23 @@ total 4
 
 docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ -p 8080:80 httpd
 ```
-
+```bash
+</html>@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ pwd
+/workspaces/NetSysProject/webpage
+@sayyidahjohari ➜ /workspaces/NetSysProject/webpage (main) $ docker run --detach -v /workspaces/NetSysProject/webpage:/usr/local/apache2/htdocs/ -p 80
+80:80 httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+09f376ebb190: Pull complete 
+dab55b4abfc3: Pull complete 
+4f4fb700ef54: Pull complete 
+1a6d0283f224: Pull complete 
+1abf9110528c: Pull complete 
+7bacb8f85f3a: Pull complete 
+Digest: sha256:43c7661a3243c04b0955c81ac994ea13a1d8a1e53c15023a7b3cd5e8bb25de3c
+Status: Downloaded newer image for httpd:latest
+281de1dfcefd07006d9e573153d71035ca5846bb726ac4d2c036fecd55e4d227
+```
 4. If it works, codespace will trigger a port assignment and provide a URL for you to access your webpage like the one below.
 
  <img src="./images/websitelink.png" width="70%">
@@ -536,7 +552,7 @@ docker run --detach -v /workspaces/OSProject/webpage:/usr/local/apache2/htdocs/ 
 ***Questions:***
 
 1. What is the permission of folder /usr/local/apache/htdocs and what user and group owns the folder? . ***(2 mark)*** __Fill answer here__.
-2. What port is the apache web server running. ***(1 mark)***
+2. What port is the apache web server running. ***(1 mark)*** __port 8080__ 
 3. What port is open for http protocol on the host machine? ***(1 mark)***
 
 ## Create SUB Networks
