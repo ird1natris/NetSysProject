@@ -459,19 +459,51 @@ At the terminal, create a new directory called **myroot**, and run a instance of
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ pwd
 /workspaces/NetSysProject/myroot
 @sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ docker run --detach -it -v /workspaces/NetSysProject/myroot:/root debian
-18aaf79f8c2e938290ad86875da2b27cf4a0298e71bbff0ff8348ba5ebdd6394
+e32ec602839531fe896d530763bca1c38137fc1710b38d7195e49e7f4101e34d
 ```
 
 ***Questions:***
 
-1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __Fill answer here__.
+1. Check the permission of the files created in myroot, what user and group is the files created in docker container on the host virtual machine? . ***(2 mark)*** __The files in myroot can be read and write by all group. The user of the file is root.__.
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l -a
+total 12
+drwxrwxrwx+ 2 codespace codespace 4096 May 21 09:21 .
+drwxrwxrwx+ 5 codespace root      4096 May 21 09:18 ..
+-rw-rw-rw-  1 root      root        67 May 21 09:21 helloworld.txt
+```
 2. Can you change the permission of the files to user codespace.  You will need this to be able to commit and get points for this question. ***(2 mark)***
 ```bash
 //use sudo and chown
 sudo chown -R codespace:codespace myroot
 
 ```
-*** __Fill answer here__.***
+*** __I can change the permission of the files to user codespace after using the command above. Commands below is the result before and after I use the command. I also have changed the permission of the files to user codespace.__.***
+
+Before:
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l
+total 4
+-rw-rw-rw- 1 root root 67 May 21 09:21 helloworld.txt
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ chmod +x helloworld.txt
+chmod: changing permissions of 'helloworld.txt': Operation not permitted
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ 
+
+```
+After:
+```bash
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ cd ..
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ sudo chown -R codespace:codespace myroot
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ cd myroot
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l
+total 4
+-rw-rw-rw- 1 codespace codespace 67 May 21 09:21 helloworld.txt
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ chmod +x helloworld.txt
+@sayyidahjohari ➜ /workspaces/NetSysProject/myroot (main) $ ls -l
+total 4
+-rwxrwxrwx 1 codespace codespace 67 May 21 09:21 helloworld.txt
+```
+
 
 ## You are on your own, create your own static webpage
 
