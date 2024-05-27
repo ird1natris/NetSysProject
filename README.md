@@ -412,6 +412,7 @@ root@6bb5c8861821:~# ls
 helloworld.txt
 ```
 7. Stop the container and delete the container. What happened to your helloworld.txt?
+   __The file helloworld.txt is deleted along with the container__
 
 ```bash 
 @joeynor ➜ /workspaces/OSProject (main) $ docker stop romantic_jackson
@@ -589,18 +590,29 @@ docker run -itd --net rednet --name c2 busybox sh
 ```
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network create bluenet
-a13d98691d8e81b906b36df6729bfbd44dda4bb50e6672ba1a9336be4e51e90c
+38c1fda261ee447c35d64eec9a5d78cdd0894da0da7e22996c7d00094cea422e
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network create rednet
-9132e65feaa8011e22ad64c1cb99b154212acf990ab546c1dbcd7d1b3d4bdf95
+29cdbb7c3b3bd558205410e90acabefc8d3e54b30752f2af4a8204458a3f9647
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker run -itd --net bluenet --name c1 busybox sh
 Unable to find image 'busybox:latest' locally
 latest: Pulling from library/busybox
 ec562eabd705: Pull complete 
 Digest: sha256:5eef5ed34e1e1ff0a4ae850395cbf665c4de6b4b83a32a0bc7bcb998e24e7bbb
 Status: Downloaded newer image for busybox:latest
-afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66
+3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker run -itd --net rednet --name c2 busybox sh
-a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61
+debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+debf2ba9174c   busybox   "sh"      4 seconds ago    Up 3 seconds              c2
+3c9619a12e7e   busybox   "sh"      13 seconds ago   Up 12 seconds             c1
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+38c1fda261ee   bluenet   bridge    local
+bfe103a9b7fc   bridge    bridge    local
+d887adb41cb9   host      host      local
+7e76ab9b00b4   none      null      local
+29cdbb7c3b3b   rednet    bridge    local
 ```
 
 ***Questions:***
@@ -616,9 +628,9 @@ a863edc11210   host      host      local
 55dd010814d3   none      null      local
 9132e65feaa8   rednet    bridge    local
 ```
-3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __gateway for bluenet is ```172.18.0.1``` and gateway for rednet is ```172.19.0.1```__.
+3. Using ```docker inspect c1``` and ```docker inspect c2``` inscpect the two network. What is the gateway of bluenet and rednet.? ***(1 mark)*** __gateway for bluenet is ```172.23.0.1``` and gateway for rednet is ```172.24.0.1```__.
 4. What is the network address for the running container c1 and c2. 
-__Network address for container c1 is ```172.18.0.2``` and c2 is ```172.19.0.2```__
+__Network address for container c1 is ```172.23.0.2``` and c2 is ```172.24.0.2```__
 
 __command for question 3 and 4:__
 
@@ -627,8 +639,8 @@ __c1:__
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker inspect c1
 [
     {
-        "Id": "afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66",
-        "Created": "2024-05-21T16:47:07.622058356Z",
+        "Id": "3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18",
+        "Created": "2024-05-27T12:59:46.853262824Z",
         "Path": "sh",
         "Args": [],
         "State": {
@@ -638,17 +650,17 @@ __c1:__
             "Restarting": false,
             "OOMKilled": false,
             "Dead": false,
-            "Pid": 2679,
+            "Pid": 20779,
             "ExitCode": 0,
             "Error": "",
-            "StartedAt": "2024-05-21T16:47:08.402403027Z",
+            "StartedAt": "2024-05-27T12:59:47.338684997Z",
             "FinishedAt": "0001-01-01T00:00:00Z"
         },
         "Image": "sha256:65ad0d468eb1c558bf7f4e64e790f586e9eda649ee9f130cd0e835b292bbc5ac",
-        "ResolvConfPath": "/var/lib/docker/containers/afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66/resolv.conf",
-        "HostnamePath": "/var/lib/docker/containers/afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66/hostname",
-        "HostsPath": "/var/lib/docker/containers/afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66/hosts",
-        "LogPath": "/var/lib/docker/containers/afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66/afd8c55a7aa7a58af47afaf5a51f65f18e7da4bf5bc7921b8318eeaa09746a66-json.log",
+        "ResolvConfPath": "/var/lib/docker/containers/3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18/hostname",
+        "HostsPath": "/var/lib/docker/containers/3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18/hosts",
+        "LogPath": "/var/lib/docker/containers/3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18/3c9619a12e7e1daf9176d7b2e85a38645bb1583aa94697bc62527b459ee33e18-json.log",
         "Name": "/c1",
         "RestartCount": 0,
         "Driver": "overlay2",
@@ -675,7 +687,7 @@ __c1:__
             "VolumesFrom": null,
             "ConsoleSize": [
                 16,
-                145
+                150
             ],
             "CapAdd": null,
             "CapDrop": null,
@@ -723,7 +735,7 @@ __c1:__
             "MemorySwappiness": null,
             "OomKillDisable": null,
             "PidsLimit": null,
-            "Ulimits": null,
+            "Ulimits": [],
             "CpuCount": 0,
             "CpuPercent": 0,
             "IOMaximumIOps": 0,
@@ -751,16 +763,16 @@ __c1:__
         },
         "GraphDriver": {
             "Data": {
-                "LowerDir": "/var/lib/docker/overlay2/f7b0a88679b5f9584f792eb19128b76d1f9d53055bcf1a9879ad2445b94fc0ff-init/diff:/var/lib/docker/overlay2/500bcb02ce56ca307298cb40a7b18e7f4eab129bfccba18ac92fa0c16a60a3cf/diff",
-                "MergedDir": "/var/lib/docker/overlay2/f7b0a88679b5f9584f792eb19128b76d1f9d53055bcf1a9879ad2445b94fc0ff/merged",
-                "UpperDir": "/var/lib/docker/overlay2/f7b0a88679b5f9584f792eb19128b76d1f9d53055bcf1a9879ad2445b94fc0ff/diff",
-                "WorkDir": "/var/lib/docker/overlay2/f7b0a88679b5f9584f792eb19128b76d1f9d53055bcf1a9879ad2445b94fc0ff/work"
+                "LowerDir": "/var/lib/docker/overlay2/44f1d3d963058b7e4ce5ef5f8dd99ff047538002a97a4305c4c1362299e16bea-init/diff:/var/lib/docker/overlay2/abf3126e547574183da84ecf869de06c0ed2128f347d2d7f6fb70d9a0a37d58e/diff",
+                "MergedDir": "/var/lib/docker/overlay2/44f1d3d963058b7e4ce5ef5f8dd99ff047538002a97a4305c4c1362299e16bea/merged",
+                "UpperDir": "/var/lib/docker/overlay2/44f1d3d963058b7e4ce5ef5f8dd99ff047538002a97a4305c4c1362299e16bea/diff",
+                "WorkDir": "/var/lib/docker/overlay2/44f1d3d963058b7e4ce5ef5f8dd99ff047538002a97a4305c4c1362299e16bea/work"
             },
             "Name": "overlay2"
         },
         "Mounts": [],
         "Config": {
-            "Hostname": "afd8c55a7aa7",
+            "Hostname": "3c9619a12e7e",
             "Domainname": "",
             "User": "",
             "AttachStdin": false,
@@ -782,12 +794,12 @@ __c1:__
         },
         "NetworkSettings": {
             "Bridge": "",
-            "SandboxID": "4fb727ce8ee764138102b2078c0ef6017e170fb8fcdefe883d233f4d0b67e837",
+            "SandboxID": "443eba7cf4a686962f8108c10a696b017e368594708d1e049eb0bf17aa75734b",
+            "SandboxKey": "/var/run/docker/netns/443eba7cf4a6",
+            "Ports": {},
             "HairpinMode": false,
             "LinkLocalIPv6Address": "",
             "LinkLocalIPv6PrefixLen": 0,
-            "Ports": {},
-            "SandboxKey": "/var/run/docker/netns/4fb727ce8ee7",
             "SecondaryIPAddresses": null,
             "SecondaryIPv6Addresses": null,
             "EndpointID": "",
@@ -802,19 +814,21 @@ __c1:__
                 "bluenet": {
                     "IPAMConfig": null,
                     "Links": null,
-                    "Aliases": [
-                        "afd8c55a7aa7"
-                    ],
-                    "NetworkID": "a13d98691d8e81b906b36df6729bfbd44dda4bb50e6672ba1a9336be4e51e90c",
-                    "EndpointID": "634c69fa9bf406166d679a0bab5d0cd05c8f5c8fdc704f4f5123df0738b86614",
-                    "Gateway": "172.18.0.1",
-                    "IPAddress": "172.18.0.2",
+                    "Aliases": null,
+                    "MacAddress": "02:42:ac:17:00:02",
+                    "NetworkID": "38c1fda261ee447c35d64eec9a5d78cdd0894da0da7e22996c7d00094cea422e",
+                    "EndpointID": "32d18268148b18d277b140e18bd94978c14e659c708303a2f88c30b10c97b70a",
+                    "Gateway": "172.23.0.1",
+                    "IPAddress": "172.23.0.2",
                     "IPPrefixLen": 16,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:12:00:02",
-                    "DriverOpts": null
+                    "DriverOpts": null,
+                    "DNSNames": [
+                        "c1",
+                        "3c9619a12e7e"
+                    ]
                 }
             }
         }
@@ -828,8 +842,8 @@ __c2:__
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker inspect c2
 [
     {
-        "Id": "a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61",
-        "Created": "2024-05-21T16:47:19.557939131Z",
+        "Id": "debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601",
+        "Created": "2024-05-27T12:59:55.618013329Z",
         "Path": "sh",
         "Args": [],
         "State": {
@@ -839,17 +853,17 @@ __c2:__
             "Restarting": false,
             "OOMKilled": false,
             "Dead": false,
-            "Pid": 2860,
+            "Pid": 20928,
             "ExitCode": 0,
             "Error": "",
-            "StartedAt": "2024-05-21T16:47:20.08293822Z",
+            "StartedAt": "2024-05-27T12:59:56.099991161Z",
             "FinishedAt": "0001-01-01T00:00:00Z"
         },
         "Image": "sha256:65ad0d468eb1c558bf7f4e64e790f586e9eda649ee9f130cd0e835b292bbc5ac",
-        "ResolvConfPath": "/var/lib/docker/containers/a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61/resolv.conf",
-        "HostnamePath": "/var/lib/docker/containers/a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61/hostname",
-        "HostsPath": "/var/lib/docker/containers/a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61/hosts",
-        "LogPath": "/var/lib/docker/containers/a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61/a0e937ac410610f0fce8e4c2cd8a7ab51004cb2d394592d5a011197eb86f6b61-json.log",
+        "ResolvConfPath": "/var/lib/docker/containers/debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601/hostname",
+        "HostsPath": "/var/lib/docker/containers/debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601/hosts",
+        "LogPath": "/var/lib/docker/containers/debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601/debf2ba9174cad1edc4aee0f8abb5d2541a37f2913ffae01ea8cfc6c2c802601-json.log",
         "Name": "/c2",
         "RestartCount": 0,
         "Driver": "overlay2",
@@ -876,7 +890,7 @@ __c2:__
             "VolumesFrom": null,
             "ConsoleSize": [
                 16,
-                145
+                150
             ],
             "CapAdd": null,
             "CapDrop": null,
@@ -924,7 +938,7 @@ __c2:__
             "MemorySwappiness": null,
             "OomKillDisable": null,
             "PidsLimit": null,
-            "Ulimits": null,
+            "Ulimits": [],
             "CpuCount": 0,
             "CpuPercent": 0,
             "IOMaximumIOps": 0,
@@ -952,16 +966,16 @@ __c2:__
         },
         "GraphDriver": {
             "Data": {
-                "LowerDir": "/var/lib/docker/overlay2/1f2fd143768ad839be2d92d32dd61f8b45a964ed2c7f7c3dea673b4cdc8c2851-init/diff:/var/lib/docker/overlay2/500bcb02ce56ca307298cb40a7b18e7f4eab129bfccba18ac92fa0c16a60a3cf/diff",
-                "MergedDir": "/var/lib/docker/overlay2/1f2fd143768ad839be2d92d32dd61f8b45a964ed2c7f7c3dea673b4cdc8c2851/merged",
-                "UpperDir": "/var/lib/docker/overlay2/1f2fd143768ad839be2d92d32dd61f8b45a964ed2c7f7c3dea673b4cdc8c2851/diff",
-                "WorkDir": "/var/lib/docker/overlay2/1f2fd143768ad839be2d92d32dd61f8b45a964ed2c7f7c3dea673b4cdc8c2851/work"
+                "LowerDir": "/var/lib/docker/overlay2/a7eb18816762f251352e048e40343e913e64919b2d319c4fdb72c6533eb4b793-init/diff:/var/lib/docker/overlay2/abf3126e547574183da84ecf869de06c0ed2128f347d2d7f6fb70d9a0a37d58e/diff",
+                "MergedDir": "/var/lib/docker/overlay2/a7eb18816762f251352e048e40343e913e64919b2d319c4fdb72c6533eb4b793/merged",
+                "UpperDir": "/var/lib/docker/overlay2/a7eb18816762f251352e048e40343e913e64919b2d319c4fdb72c6533eb4b793/diff",
+                "WorkDir": "/var/lib/docker/overlay2/a7eb18816762f251352e048e40343e913e64919b2d319c4fdb72c6533eb4b793/work"
             },
             "Name": "overlay2"
         },
         "Mounts": [],
         "Config": {
-            "Hostname": "a0e937ac4106",
+            "Hostname": "debf2ba9174c",
             "Domainname": "",
             "User": "",
             "AttachStdin": false,
@@ -983,12 +997,12 @@ __c2:__
         },
         "NetworkSettings": {
             "Bridge": "",
-            "SandboxID": "813e427f4a77bbf65e4435455de325d90491ba390e00325e5f3f3db6ef050528",
+            "SandboxID": "a41c7db615de44c16cf2c42adc378813cf5f883d33410731328d80a55ba0e73d",
+            "SandboxKey": "/var/run/docker/netns/a41c7db615de",
+            "Ports": {},
             "HairpinMode": false,
             "LinkLocalIPv6Address": "",
             "LinkLocalIPv6PrefixLen": 0,
-            "Ports": {},
-            "SandboxKey": "/var/run/docker/netns/813e427f4a77",
             "SecondaryIPAddresses": null,
             "SecondaryIPv6Addresses": null,
             "EndpointID": "",
@@ -1003,19 +1017,21 @@ __c2:__
                 "rednet": {
                     "IPAMConfig": null,
                     "Links": null,
-                    "Aliases": [
-                        "a0e937ac4106"
-                    ],
-                    "NetworkID": "9132e65feaa8011e22ad64c1cb99b154212acf990ab546c1dbcd7d1b3d4bdf95",
-                    "EndpointID": "75d99abebd5bda2cd94f1b32713aed9c02bda20ba3a8dea5865206851251ec44",
-                    "Gateway": "172.19.0.1",
-                    "IPAddress": "172.19.0.2",
+                    "Aliases": null,
+                    "MacAddress": "02:42:ac:18:00:02",
+                    "NetworkID": "29cdbb7c3b3bd558205410e90acabefc8d3e54b30752f2af4a8204458a3f9647",
+                    "EndpointID": "6847df25d91aece786ffca5324ff671538f07d2b3d97bf5357c4ff523109f0de",
+                    "Gateway": "172.24.0.1",
+                    "IPAddress": "172.24.0.2",
                     "IPPrefixLen": 16,
                     "IPv6Gateway": "",
                     "GlobalIPv6Address": "",
                     "GlobalIPv6PrefixLen": 0,
-                    "MacAddress": "02:42:ac:13:00:02",
-                    "DriverOpts": null
+                    "DriverOpts": null,
+                    "DNSNames": [
+                        "c2",
+                        "debf2ba9174c"
+                    ]
                 }
             }
         }
@@ -1023,19 +1039,12 @@ __c2:__
 ]
 ```
 5. Using the command ```docker exec c1 ping c2```, which basically issue a ping from container c1 to c2. Are you able to ping? Show your output . ***(1 mark)***
-__I can ping to c2 gateway but could not ping to c2 ip address and it took a long time to show the output__
+__I cannot ping to c2 from container c1 because it says bad address.__
+
 ```bash
-@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec c1 ping 172.19.0.1
-PING 172.19.0.1 (172.19.0.1): 56 data bytes
-64 bytes from 172.19.0.1: seq=0 ttl=64 time=0.117 ms
-64 bytes from 172.19.0.1: seq=1 ttl=64 time=0.118 ms
-64 bytes from 172.19.0.1: seq=2 ttl=64 time=0.060 ms
-64 bytes from 172.19.0.1: seq=3 ttl=64 time=0.111 ms
-64 bytes from 172.19.0.1: seq=4 ttl=64 time=0.098 ms
-64 bytes from 172.19.0.1: seq=5 ttl=64 time=0.096 ms
-^C
-@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec c1 ping 172.19.0.2
-^C
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec c1 ping c2
+ping: bad address 'c2'
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ 
 
 ```
 
@@ -1048,35 +1057,32 @@ docker network connect bridgenet c2
 docker exec c1 ping c2
 ```
 
+__After executing the command above, I finally can ping c2 from container c1 as shown below.__
 ```bash
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network create bridgenet
-9c7e3d5afab5befb0da9f18cab6ccdf6a5639e33c96d7babfc296b500146b91d
-@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network ls
-NETWORK ID     NAME        DRIVER    SCOPE
-a13d98691d8e   bluenet     bridge    local
-c79a73f1bc91   bridge      bridge    local
-9c7e3d5afab5   bridgenet   bridge    local
-a863edc11210   host        host      local
-55dd010814d3   none        null      local
-9132e65feaa8   rednet      bridge    local
+6abd38936ac3da565803a2701cc9db73af732c71f4654f62db3652498df013d7
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker connect bridgenet c1
+docker: 'connect' is not a docker command.
+See 'docker --help'
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network connect bridgenet c1
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network connect bridgenet c2
 @sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker network ls
 NETWORK ID     NAME        DRIVER    SCOPE
-a13d98691d8e   bluenet     bridge    local
-c79a73f1bc91   bridge      bridge    local
-9c7e3d5afab5   bridgenet   bridge    local
-a863edc11210   host        host      local
-55dd010814d3   none        null      local
-9132e65feaa8   rednet      bridge    local
-@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec c1 ping 172.19.0.1
-PING 172.19.0.1 (172.19.0.1): 56 data bytes
-64 bytes from 172.19.0.1: seq=0 ttl=64 time=0.136 ms
-64 bytes from 172.19.0.1: seq=1 ttl=64 time=0.145 ms
-64 bytes from 172.19.0.1: seq=2 ttl=64 time=0.120 ms
-64 bytes from 172.19.0.1: seq=3 ttl=64 time=0.127 ms
-^C
-@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec c1 ping 172.19.0.2
+38c1fda261ee   bluenet     bridge    local
+bfe103a9b7fc   bridge      bridge    local
+6abd38936ac3   bridgenet   bridge    local
+d887adb41cb9   host        host      local
+7e76ab9b00b4   none        null      local
+29cdbb7c3b3b   rednet      bridge    local
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED         STATUS         PORTS     NAMES
+debf2ba9174c   busybox   "sh"      9 minutes ago   Up 9 minutes             c2
+3c9619a12e7e   busybox   "sh"      9 minutes ago   Up 9 minutes             c1
+@sayyidahjohari ➜ /workspaces/NetSysProject (main) $ docker exec c1 ping c2
+PING c2 (172.25.0.3): 56 data bytes
+64 bytes from 172.25.0.3: seq=0 ttl=64 time=0.161 ms
+64 bytes from 172.25.0.3: seq=1 ttl=64 time=0.105 ms
+64 bytes from 172.25.0.3: seq=2 ttl=64 time=0.110 ms
 ^C
 ```
 
@@ -1086,3 +1092,4 @@ PING 172.19.0.1 (172.19.0.1): 56 data bytes
 2. Check your repository link, to see if all the files and answers are included in the repository. 
 3. Submit through italeem, by providing the link to your repository.
 4. Due by ***30 May, 2024***
+
